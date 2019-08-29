@@ -10,22 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_124641) do
+ActiveRecord::Schema.define(version: 2019_08_29_151157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "metric_types", force: :cascade do |t|
-    t.string "name"
-  end
 
   create_table "metrics", force: :cascade do |t|
     t.datetime "timestamp"
     t.integer "customer_id"
     t.integer "admin_id"
-    t.bigint "metric_type_id", null: false
-    t.index ["metric_type_id"], name: "index_metrics_on_metric_type_id"
+    t.integer "metric_type_id", limit: 2, null: false
   end
 
-  add_foreign_key "metrics", "metric_types"
 end
