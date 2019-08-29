@@ -16,9 +16,6 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 
-# Ignore bundler config.
-/.bundle
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -33,6 +30,8 @@ pickle-email-*.html
 /.bundle
 /vendor/bundle
 
+/public/packs
+/public/packs-test
 /public/assets
 .byebug_history
 
@@ -48,3 +47,4 @@ yarn-debug.log*
 # local dev
 .idea
 .env
+.db
