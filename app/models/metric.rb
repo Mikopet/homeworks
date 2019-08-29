@@ -6,4 +6,6 @@ class Metric < ApplicationRecord
     step_end: 4,
     pwd_gen: 5
   }
+
+  scope :setup, -> { where(metric_type_id: [:setup_start, :setup_end]) }
 end

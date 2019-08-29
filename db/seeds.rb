@@ -1,6 +1,6 @@
 Metric.destroy_all
 
-10_000.times do |index|
+1000.times do |index|
   # Create "SETUP start" for each customer
   metric = Metric.create!(
     timestamp: Faker::Time.between(from: 2.years.ago, to: 3.weeks.ago),

@@ -15,15 +15,10 @@
  */
 
 html {
-    background-color: grey;
+    background-color: #deffed;
 }
 
-body {
-    margin: 20px;
-    padding: 20px;
-    background-color:white;
-}
-
-h2 {
-    text-align: center;
+div {
+    margin: auto;
+    float: left;
 }

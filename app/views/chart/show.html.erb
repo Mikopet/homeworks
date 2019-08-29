@@ -1,9 +1,0 @@
-<h2>Event counts by month</h2>
-<p>
-  <%= area_chart Metric.metric_type_ids.map { |name, id|
-    {
-      name: name,
-      data: @metrics.where(metric_type_id: id).group_by_month(:timestamp).count
-    }
-  } %>
-</p>
