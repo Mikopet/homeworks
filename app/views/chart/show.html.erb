@@ -1,2 +1,9 @@
-<h1>Chart#show</h1>
-<p>Find me in app/views/chart/show.html.erb</p>
+<h2>Event counts by month</h2>
+<p>
+  <%= area_chart @metric_types.map { |type|
+    {
+      name: type.name,
+      data: type.metrics.group_by_month(:timestamp).count
+    }
+  } %>
+</p>
