@@ -9,3 +9,28 @@ Outside of the given example I want to generate larger ones, and try to make a b
 
 Want to go by TDD and comment the code unnecessarily extensively, to pass my thoughts about some parts. I will use Git so you can see the progress of my work; and after the final adjustments I just have to share the repository.
 
+### 1) Planning
+So first day, first ideas. I need some environment, some test data, tests, a prototype or PoC.
+I will rethink this whole lineup for tomorrow (this section is the task for today) but lets write something down.
+Need a Dockerfile(not necessary), a docker-compose file with one service yet which is a latest ruby and a volume mount. 
+Need data, but for the beginning the dataset in the PDF seems enough.
+
+Maybe I will start with the functional code: in IRB I can write the whole functional stuff easily.
+The idea about that is, read the file line by line and evaluate one record at once. It looks memory efficient, and fast.
+Not the best thing in the universe is testing imperative code, but there all we need is pure functions, and like that, this methods are testable.
+So I will write the code function-by-function with tests ahead.
+The problem there what we maybe face to is the state in the iteration. But thats an implementation issue.
+Okay, we will have a working version. Need more data, so will implement some data-generator.
+Test the program with lets say 100k lines.
+
+The second solution is with OOP style. The constructor gets the data (by description) in a string. That sounds not very well, but can work.
+For first version we just implement some line reader logic, with different implementation for every sensor type. Connected in an "interface". (Ruby dont have such thing, but there is some dirty solution).
+It will work but I don't think it will fly very well.
+
+So refactor this OOP thingy to a more sustainable version. Lets call itt version 3.
+I think it's better to get some Enumerable in the constructor or just the link to the data itself.
+But this is implementation issue too.
+
+So after all three working versions, need to create metrics for them, like execute time, and data amount.
+
+With the most efficient solution I will make a new log format and bind back to the benchmark to see, it has any improvement in the metrics or ain't.
