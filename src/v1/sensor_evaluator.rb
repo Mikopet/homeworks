@@ -1,4 +1,8 @@
 class SensorEvaluator
+  REGEX_REFERENCE = /^reference (?<thermometer>\d+\.?\d*) (?<humidity>\d+\.?\d*) (?<monoxide>\d+\.?\d*)$/
+  REGEX_SENSOR = /^(?<sensor>\w+) (?<name>\S+)$/
+  REGEX_VALUE = /^(?<date>[0-9\-T:]+) (?<value>\d+\.?\d*)$/
+
   def initialize(log)
     raise LoadError if log.empty?
 
@@ -9,8 +13,10 @@ class SensorEvaluator
 
   def evaluate
     @log.each do |line|
-      # TODO: decide which parser to use. set that as current parser
-      # TODO: collect the values
+      # Check for the VALUE first, thats the most common. Check the REFERENCE last
+      # Its not the best at all, but fairly enough now
+      parsed_line = line.match(REGEX_VALUE) || line.match(REGEX_SENSOR) || line.match(REGEX_REFERENCE)
+      raise LoadError if parsed_line.nil?
     end
 
     # TODO: evaluate them, and return with the solution
@@ -22,7 +28,7 @@ class SensorEvaluator
   def parse_reference(first_line)
     # I know it seems a bit hacky, but this is a text processing task.
     # RegExp is a powerful tool for that, and for validating is enough for us
-    match = first_line.match(/^reference (?<thermometer>\d+\.?\d*) (?<humidity>\d+\.?\d*) (?<monoxide>\d+\.?\d*)$/)
+    match = first_line.match(REGEX_REFERENCE)
 
     raise LoadError if match.nil?
 

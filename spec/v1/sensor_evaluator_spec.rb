@@ -30,5 +30,13 @@ describe SensorEvaluator do
 
   describe '#evaluate' do
     subject(:evaluation) {construction.evaluate}
+
+    context 'called with bad log format' do
+      let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4apple" }
+
+      it 'raises Error' do
+        expect {subject}.to raise_error(LoadError)
+      end
+    end
   end
 end
