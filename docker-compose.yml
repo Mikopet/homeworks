@@ -2,7 +2,7 @@ version: '3.7'
 services:
   app:
     build: .
-    #command: "irb"
+    command: "rake"
     volumes:
       - .:/app
 

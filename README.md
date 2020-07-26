@@ -35,6 +35,11 @@ So after all three working versions, need to create metrics for them, like execu
 
 With the most efficient solution I will make a new log format and bind back to the benchmark to see, it has any improvement in the metrics or ain't.
 
-### 2) Version #1: The requested OOP approach
-I decided to go with this first. This is because I don't know how many time I will had in the next week: so the business value first, and after that I can refactor or something.
+### 2) Prerequisites
+I did some environment with docker and docker-compose. Latest ruby:alpine is perfect for us.
+Does not need exact versions yet. This project is ephemeral.
+And I did a Rakefile, this will be the center of the repository.
+It will run, generate, test, benchmark, and so on if neded.
 
+### 3) Version #1: The requested OOP approach
+I decided to go with this first. This is because I don't know how many time I will had in the next week: so the business value first, and after that I can refactor or something.
