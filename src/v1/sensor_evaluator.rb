@@ -2,12 +2,19 @@ class SensorEvaluator
   def initialize(log)
     raise LoadError if log.empty?
 
-    @reference = parse_reference(log.lines.first)
-
-    @log = log
+    # not the best idea to load the whole stuff to the memory
+    @log = log.lines
+    @reference = parse_reference(@log.first)
   end
 
   def evaluate
+    @log.each do |line|
+      # TODO: decide which parser to use. set that as current parser
+      # TODO: collect the values
+    end
+
+    # TODO: evaluate them, and return with the solution
+    {}
   end
 
   private
