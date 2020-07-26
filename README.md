@@ -34,3 +34,7 @@ But this is implementation issue too.
 So after all three working versions, need to create metrics for them, like execute time, and data amount.
 
 With the most efficient solution I will make a new log format and bind back to the benchmark to see, it has any improvement in the metrics or ain't.
+
+### 2) Version #1: The requested OOP approach
+I decided to go with this first. This is because I don't know how many time I will had in the next week: so the business value first, and after that I can refactor or something.
+
