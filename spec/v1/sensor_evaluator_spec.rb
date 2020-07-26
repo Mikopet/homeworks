@@ -19,6 +19,15 @@ describe SensorEvaluator do
     end
   end
 
+  context 'call with valid reference format' do
+    let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4" }
+    let(:parsed_references) { {thermometer: 70.0, humidity: 45.0, monoxide: 6.0} }
+
+    it 'parses the values correctly' do
+      expect(subject.instance_variable_get(:@reference)).to eq(parsed_references)
+    end
+  end
+
   describe '#evaluate' do
     subject(:evaluation) {construction.evaluate}
   end
