@@ -1,7 +1,7 @@
 require '../src/v1/sensor_evaluator'
 
 describe SensorEvaluator do
-  subject(:construction) { described_class.new(data) }
+  subject(:initialized_class) { described_class.new(data) }
 
   context 'call without data' do
     let(:data) { '' }
@@ -28,14 +28,33 @@ describe SensorEvaluator do
     end
   end
 
-  describe '#evaluate' do
-    subject(:evaluation) {construction.evaluate}
+  describe '#collect' do
+    subject(:collected_data) { initialized_class.send(:collect) }
 
     context 'called with bad log format' do
       let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4apple" }
 
       it 'raises Error' do
         expect {subject}.to raise_error(LoadError)
+      end
+    end
+
+    context 'called with good log format by 1 sensor' do
+      let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 70\n2007-04-05T22:00 71.5" }
+
+      it 'returns a Hash with the only sensor and its values' do
+        expect(subject).to eq('temp-1': {type: :thermometer, values: [70.0, 71.5]} )
+      end
+    end
+
+    context 'called with good log format by 2 other sensor' do
+      let(:data) { "reference 70.0 45.0 6\nhumidity hum-1\n2007-04-05T22:04 45.2\n2007-04-05T22:05 45.3\nmonoxide mon-2\n2007-04-05T22:04 2\n2007-04-05T22:05 4" }
+
+      it 'returns a Hash with the only sensor and its values' do
+        expect(subject).to eq(
+          'hum-1': { type: :humidity, values: [45.2, 45.3] },
+          'mon-2': { type: :monoxide, values: [2.0, 4.0] }
+        )
       end
     end
   end

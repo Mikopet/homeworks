@@ -12,18 +12,37 @@ class SensorEvaluator
   end
 
   def evaluate
-    @log.each do |line|
-      # Check for the VALUE first, thats the most common. Check the REFERENCE last
-      # Its not the best at all, but fairly enough now
-      parsed_line = line.match(REGEX_VALUE) || line.match(REGEX_SENSOR) || line.match(REGEX_REFERENCE)
-      raise LoadError if parsed_line.nil?
-    end
-
     # TODO: evaluate them, and return with the solution
     {}
   end
 
   private
+
+  def collect
+    current_sensor = nil
+    values_by_sensor = {}
+
+    @log.each do |line|
+      # Check for the VALUE first, that's the most common. Check the REFERENCE last
+      # Its not the best at all, but fairly enough now
+      parsed_line = line.match(REGEX_VALUE) || line.match(REGEX_SENSOR) || line.match(REGEX_REFERENCE)
+      raise LoadError if parsed_line.nil?
+
+      record = parsed_line.named_captures
+
+      if record.keys.include?('sensor')
+        current_sensor = record['name'].to_sym
+        values_by_sensor[current_sensor] ||= {
+          type: record['sensor'].to_sym,
+          values: []
+        }
+      elsif record.keys.include?('date')
+        values_by_sensor[current_sensor][:values] << record['value'].to_f
+      end
+    end
+
+    values_by_sensor
+  end
 
   def parse_reference(first_line)
     # I know it seems a bit hacky, but this is a text processing task.
