@@ -19,6 +19,10 @@ class SensorEvaluator
     collect.each do |name, data|
       reference = @reference[data[:type]]
 
+      # Okay, this is a bad practice to easy up this condition hell.
+      # Its okay for now, but need to refactor <-- TODO
+      verdict = 'discard'
+
       if data[:type] == :thermometer
         mean_difference = [data[:values].mean, reference].range
 
@@ -29,11 +33,12 @@ class SensorEvaluator
         else
           verdict = 'precise'
         end
-
-      else
-        # Okay, this is a bad practice to easy up this condition hell.
-        # Its okay for now, but need to refactor <-- TODO
-        verdict = 'discard'
+      elsif data[:type] == :humidity
+        range = (reference-1..reference+1)
+        verdict = 'keep' if range.include?(data[:values].max) && range.include?(data[:values].min)
+      elsif data[:type] == :monoxide
+        range = (reference-3..reference+3)
+        verdict = 'keep' if range.include?(data[:values].max) && range.include?(data[:values].min)
       end
 
       result[name] = verdict

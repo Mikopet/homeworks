@@ -88,5 +88,48 @@ LOG
         )
       end
     end
+
+    context 'called without thermometer sensor' do
+      let(:data) { <<~LOG }
+reference 70.0 45.0 6
+humidity hum-1
+2007-04-05T22:04 45.2
+2007-04-05T22:05 45.3
+humidity hum-2
+2007-04-05T22:04 44.4
+2007-04-05T22:05 43.9
+monoxide mon-1
+2007-04-05T22:04 5
+2007-04-05T22:05 7
+monoxide mon-2
+2007-04-05T22:04 2
+2007-04-05T22:05 4
+LOG
+
+      it 'returns the evaluation Hash' do
+        expect(subject).to eq(
+          "hum-1": "keep",
+          "hum-2": "discard",
+          "mon-1": "keep",
+          "mon-2": "discard"
+        )
+      end
+    end
+
+    # It's just for to be sure I don't mess anything mathematically
+    context 'called with the sample data file' do
+      let(:data) { File.read('data/sample_data.txt') }
+
+      it 'returns the sample output given in task' do
+        expect(subject).to eq(
+          "temp-1": "precise",
+          "temp-2": "ultra precise",
+          "hum-1": "keep",
+          "hum-2": "discard",
+          "mon-1": "keep",
+          "mon-2": "discard"
+        )
+      end
+    end
   end
 end

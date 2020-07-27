@@ -42,4 +42,10 @@ And I did a Rakefile, this will be the center of the repository.
 It will run, generate, test, benchmark, and so on if neded.
 
 ### 3) Version #1: The requested OOP approach
-I decided to go with this first. This is because I don't know how many time I will had in the next week: so the business value first, and after that I can refactor or something.
+I decided to go with this first. This is because I don't know how much time I will had in the next week: so the business value first, and after that I can refactor or something.
+
+---
+
+I had different exciting errors during implement the working MVP. Like the sample dataset was invalid, or the math libs for deviation were different.
+After all, I did some dirty work with the codebase, but the tests are good I think.
+Now the next task is to refactor it a bit to have a better code reading experience.
