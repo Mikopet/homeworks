@@ -58,4 +58,35 @@ describe SensorEvaluator do
       end
     end
   end
+
+  describe '#evaluate' do
+    subject(:evaluated_data) { initialized_class.evaluate }
+
+    context 'called with thermo sensor only' do
+      let(:data) { <<~LOG }
+reference 70.0 45.0 6
+thermometer temp-1
+2007-04-05T22:00 66
+2007-04-05T22:01 74
+thermometer temp-2
+2007-04-05T22:01 69.5
+2007-04-05T22:02 71.0
+thermometer temp-3
+2007-04-05T22:01 67
+2007-04-05T22:02 73
+thermometer temp-4
+2007-04-05T22:01 71
+2007-04-05T22:02 71
+LOG
+
+      it 'returns the evaluation Hash' do
+        expect(subject).to eq(
+          "temp-1": "precise",
+          "temp-2": "ultra precise",
+          "temp-3": "very precise",
+          "temp-4": "precise"
+        )
+      end
+    end
+  end
 end

@@ -1,3 +1,5 @@
+require 'statistics'
+
 class SensorEvaluator
   REGEX_REFERENCE = /^reference (?<thermometer>\d+\.?\d*) (?<humidity>\d+\.?\d*) (?<monoxide>\d+\.?\d*)$/
   REGEX_SENSOR = /^(?<sensor>\w+) (?<name>\S+)$/
@@ -12,8 +14,32 @@ class SensorEvaluator
   end
 
   def evaluate
-    # TODO: evaluate them, and return with the solution
-    {}
+    result = {}
+
+    collect.each do |name, data|
+      reference = @reference[data[:type]]
+
+      if data[:type] == :thermometer
+        mean_difference = [data[:values].mean, reference].range
+
+        if mean_difference <= 0.5 && data[:values].standard_deviation < 3
+          verdict = 'ultra precise'
+        elsif mean_difference <= 0.5 && data[:values].standard_deviation < 5
+          verdict = 'very precise'
+        else
+          verdict = 'precise'
+        end
+
+      else
+        # Okay, this is a bad practice to easy up this condition hell.
+        # Its okay for now, but need to refactor <-- TODO
+        verdict = 'discard'
+      end
+
+      result[name] = verdict
+    end
+
+    result
   end
 
   private
