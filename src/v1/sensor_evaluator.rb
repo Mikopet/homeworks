@@ -55,19 +55,12 @@ class SensorEvaluator
       record = parse_line(line)
 
       if record.keys == %i[thermometer humidity monoxide]
-        # Yes, we transform the integer value to float too!
-        # For the future calculations float is exactly the same, but the code is
-        # less complex without handle it otherwise. Even the code is open to future extensions,
-        # when we will test the hardware more precisely (or the hardware is able to report more precise)!
-        @reference = record.transform_values(&:to_f)
+        @reference = record
       elsif record.keys == %i[type name]
-        current_sensor = record[:name].to_sym
-        values_by_sensor[current_sensor] ||= {
-          type: record[:type].to_sym,
-          values: []
-        }
+        current_sensor = record[:name]
+        values_by_sensor[current_sensor] ||= { type: record[:type], values: [] }
       elsif record.keys == %i[time value]
-        values_by_sensor[current_sensor][:values] << record[:value].to_f
+        values_by_sensor[current_sensor][:values] << record[:value]
       end
     end
 
