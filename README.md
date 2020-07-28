@@ -49,3 +49,7 @@ I decided to go with this first. This is because I don't know how much time I wi
 I had different exciting errors during implement the working MVP. Like the sample dataset was invalid, or the math libs for deviation were different.
 After all, I did some dirty work with the codebase, but the tests are good I think.
 Now the next task is to refactor it a bit to have a better code reading experience.
+
+---
+
+So first I wanna decouple the parser logic into separate module

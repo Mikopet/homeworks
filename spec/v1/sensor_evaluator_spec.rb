@@ -11,25 +11,26 @@ describe SensorEvaluator do
     end
   end
 
-  context 'call without valid reference values' do
-    let(:data) { "reference 70.0 45.0 apple\nthermometer temp-1\n2007-04-05T22:00 72.4" }
-
-    it 'raises Error' do
-      expect {subject}.to raise_error(LoadError)
-    end
-  end
-
-  context 'call with valid reference format' do
-    let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4" }
-    let(:parsed_references) { {thermometer: 70.0, humidity: 45.0, monoxide: 6.0} }
-
-    it 'parses the values correctly' do
-      expect(subject.instance_variable_get(:@reference)).to eq(parsed_references)
-    end
-  end
-
   describe '#collect' do
     subject(:collected_data) { initialized_class.send(:collect) }
+
+    context 'call without valid reference values' do
+      let(:data) { "reference 70.0 45.0 apple\nthermometer temp-1\n2007-04-05T22:00 72.4" }
+
+      it 'raises Error' do
+        expect {subject}.to raise_error(LoadError)
+      end
+    end
+
+    context 'call with valid reference format' do
+      let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4" }
+      let(:parsed_references) { {thermometer: 70.0, humidity: 45.0, monoxide: 6.0} }
+
+      it 'parses the values correctly' do
+        subject
+        expect(initialized_class.instance_variable_get(:@reference)).to eq(parsed_references)
+      end
+    end
 
     context 'called with bad log format' do
       let(:data) { "reference 70.0 45.0 6\nthermometer temp-1\n2007-04-05T22:00 72.4apple" }
