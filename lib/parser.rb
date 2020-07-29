@@ -4,9 +4,9 @@ module Parser
   SENSOR_TYPES = %i[thermometer humidity monoxide]
   # I know it seems a bit hacky, but this is a text processing task.
   # RegExp is a powerful tool for that, and for validating is enough for us
-  REGEX_REFERENCE = /^reference (?<thermometer>\d+\.?\d*) (?<humidity>\d+\.?\d*) (?<monoxide>\d+\.?\d*)$/
+  REGEX_REFERENCE = /^reference (?<thermometer>-?\d+\.?\d*) (?<humidity>\d+\.?\d*) (?<monoxide>\d+\.?\d*)$/
   REGEX_SENSOR = /^(?<type>#{SENSOR_TYPES.join('|')}) (?<name>\S+)$/
-  REGEX_VALUE = /^(?<time>[0-9\-T:]+) (?<value>\d+\.?\d*)$/
+  REGEX_VALUE = /^(?<time>[0-9\-T:+]+) (?<value>-?\d+\.?\d*)$/
 
   # Parsing ONE line from log
   def parse_line(line)

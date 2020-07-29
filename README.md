@@ -1,4 +1,5 @@
 # CMG Engineering Audition
+The technical documentation is on a [different page][1].
 
 ### 0) Project basics, vision
 When I was about to solve the task, I did figure out how I'm able to pass my thoughts. The idea is this README with a bit blog style. I want to go forward section by section.
@@ -52,4 +53,13 @@ Now the next task is to refactor it a bit to have a better code reading experien
 
 ---
 
-So first I wanna decouple the parser logic into separate module
+So after some refactor and decoupling things, I decided to consider it done for an MVP.
+I did some [TECHNICAL DOCUMENTATION][1] for using the code.
+And the generator to test with larger files.
+
+Go to the version 2. Maybe it will be better, faster, prettier.
+
+### 4) Version #2: Modified OOP approach
+The first thing I want to change, is the loading of the data.  
+
+[1]: ./blob/master/TECHNICAL-DOCUMENTATION.md
