@@ -48,10 +48,11 @@ task :generate, %i[sensor_count line_count] do |t, args|
 
   sensors.times do
     sensor = Parser::SENSOR_TYPES.sample
-    out_file.puts("#{sensor} #{SecureRandom.uuid}")
+    out_file.puts("#{sensor} #{sensor[0..3]}-#{SecureRandom.uuid[0..7]}")
+    sensor_precisity = refs[sensor]-rand(0..5)..refs[sensor]+rand(0..5)
 
     lines.times do
-      value = rand(refs[sensor]-4..refs[sensor]+4)
+      value = rand(sensor_precisity).round(2)
       out_file.puts("#{DateTime.now.iso8601} #{value}")
     end
   end

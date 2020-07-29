@@ -55,7 +55,7 @@ Now the next task is to refactor it a bit to have a better code reading experien
 
 So after some refactor and decoupling things, I decided to consider it done for an MVP.
 I did some [TECHNICAL DOCUMENTATION][1] for using the code.
-And the generator to test with larger files.
+And the generator to test with larger files. At this point thermometer knows negative numbers too
 
 Go to the version 2. Maybe it will be better, faster, prettier.
 
