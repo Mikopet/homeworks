@@ -17,8 +17,8 @@ desc "Start the tests"
 task default: %w[spec]
 
 desc "Run the desired code version with the given datafile"
-task :run, %i[version filename] do |t, args|
-  require 'pp'
+task :run, %i[version filename verbose] do |t, args|
+  verbose ||= true
 
   if args.version == 'v1'
     require 'v1/sensor_evaluator'
@@ -26,7 +26,21 @@ task :run, %i[version filename] do |t, args|
     log = File.read("data/#{args.filename}.txt")
     se = SensorEvaluator.new(log)
 
-    pp se.evaluate
+    result = se.evaluate
+  elsif args.version == 'v1.1'
+    require 'v1/sensor_evaluator'
+
+    log = File.open("data/#{args.filename}.txt")
+    se = SensorEvaluator.new(log)
+
+    result = se.evaluate
+  else
+    result = 'No result!'
+  end
+
+  if verbose == "false"
+    require 'pp'
+    pp result
   end
 end
 
@@ -62,4 +76,26 @@ end
 
 desc "Runs the benchmarks on all code version with all data files in data folder"
 task :benchmark do
+  require 'benchmark'
+
+  versions = %w[v1 v1.1]
+  files = Dir.children('data').map { |f| File.basename(f, '.txt').to_sym }
+
+  times = []
+
+  versions.each do |version|
+    times << { version: version }
+    files.each do |filename|
+      Rake::Task[:run].reenable
+
+      time = Benchmark.measure do
+        Rake::Task[:run].invoke(version, filename, false)
+      end
+
+      times.last.merge!({ filename => time.total.round(4)})
+    end
+  end
+
+  require 'hirb'
+  puts Hirb::Helpers::AutoTable.render(times, fields: (files << :version).sort.reverse )
 end

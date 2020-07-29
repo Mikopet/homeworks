@@ -3,14 +3,6 @@ require '../src/v1/sensor_evaluator'
 describe SensorEvaluator do
   subject(:initialized_class) { described_class.new(data) }
 
-  context 'call without data' do
-    let(:data) { '' }
-
-    it 'raises Error' do
-      expect {subject}.to raise_error(LoadError)
-    end
-  end
-
   describe '#collect' do
     subject(:collected_data) { initialized_class.send(:collect) }
 
@@ -62,6 +54,14 @@ describe SensorEvaluator do
 
   describe '#evaluate' do
     subject(:evaluated_data) { initialized_class.evaluate }
+
+    context 'call without data' do
+      let(:data) { '' }
+
+      it 'returns empty Hash' do
+        expect(subject).to eq({})
+      end
+    end
 
     context 'called with thermo sensor only' do
       let(:data) { <<~LOG }

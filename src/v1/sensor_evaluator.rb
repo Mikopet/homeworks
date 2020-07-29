@@ -5,10 +5,7 @@ class SensorEvaluator
   include Parser
 
   def initialize(log)
-    raise LoadError if log.empty?
-
-    # not the best idea to load the whole stuff to the memory
-    @log = log.lines
+    @log = log.each_line
   end
 
   def evaluate
