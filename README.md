@@ -59,7 +59,49 @@ And the generator to test with larger files. At this point thermometer knows neg
 
 Go to the version 2. Maybe it will be better, faster, prettier.
 
-### 4) Version #2: Modified OOP approach
-The first thing I want to change, is the loading of the data.  
+### 4) Version #1.1: Modified OOP approach
+The first thing I wanted to change, is the loading of the data.
+But I realized, the `v1` can work with enumerator too (if I refactored it a bit),
+so in the runner this is called `v1.1`.
+
+I created the benchmark frame too, so I have numbers: its faster, but not much.
+But I'm sure it eats less memory, which is a benefit too.
+
+### 5) Conclusion
+Sadly I'm out of time. I wanted to create a functional approach, who have minimal boilerplate with objects,
+and only reads, and stops if something is out of order, and give a verdict.
+But to be honest, this sounds good but have no really too much benefit.
+It can maybe work in the OOP story too. With more refactoring...
+
+I wanted to create a `Rust` version of this too because of fun, but really have no time for that.
+
+### 6) The Extra
+I think the log format will be better, if there will be the all of necessary informations in one line.
+Like time, sensor name, sensor type, the value. And the reference values stored somewhere else.
+```bash
+2007-04-05T22:04:00 | humidity | hum-2 | 44.4
+2007-04-05T22:04:01 | humidity | hum-1 | 44.2
+2007-04-05T22:04:01 | monoxide | mon-1 | 4
+```
+Even in the filename, but somewhere else. Thats an important metainformation, but not a log.
+At least if the environmental values does not varies. In this case somethink like that needed:
+```bash
+2007-04-05T22:04:00 | reference | { thermometer: 45.0, humidity: 67.8, monoxide: 3 }
+```
+
+I did a lot of regex, but it can be solved by simple splits too, if I know what the exact form of a line can only come!
+So maybe if the log stores only JSON objects, it can be parsed without any problem, or regexp, or magic.
+Just readline, and parse.
+And the merging. I know its one room one context, but different sensors.
+Different tools needs separate logs, and like that we can read them paralell.
+And the log format simplified again.
+
+So by the way, if we log the values only (time seems unnecessary now) and we know, that sensor is for what type:
+then we can read only by parsing values line by line, and if some values is out of boundary, then simply stop the process,
+and we can label that sensor with `discard`. Otherwise run as long as we have resource for that.
+
+If we need aggregated value from the data, like the deviation one, sure we need to read them all.
+But have a chance to make some anomaly detection too, to exclude bad measures.
+
 
 [1]: ./blob/master/TECHNICAL-DOCUMENTATION.md

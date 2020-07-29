@@ -83,10 +83,12 @@ task :benchmark do
 
   times = []
 
-  versions.each do |version|
+  versions.each.with_index do |version, vi|
     times << { version: version }
-    files.each do |filename|
+    files.each.with_index do |filename, fi|
       Rake::Task[:run].reenable
+
+      puts "#{vi+1 * fi+1}/#{versions.count * files.count}: #{filename}"
 
       time = Benchmark.measure do
         Rake::Task[:run].invoke(version, filename, false)
