@@ -84,14 +84,15 @@ Like time, sensor name, sensor type, the value. And the reference values stored 
 2007-04-05T22:04:01 | monoxide | mon-1 | 4
 ```
 Even in the filename, but somewhere else. Thats an important metainformation, but not a log.
-At least if the environmental values does not varies. In this case somethink like that needed:
+At least if the environmental values does not varies. In this case something like that needed:
 ```bash
 2007-04-05T22:04:00 | reference | { thermometer: 45.0, humidity: 67.8, monoxide: 3 }
 ```
 
 I did a lot of regex, but it can be solved by simple splits too, if I know what the exact form of a line can only come!
-So maybe if the log stores only JSON objects, it can be parsed without any problem, or regexp, or magic.
-Just readline, and parse.
+So maybe if the log stores only JSON objects, it can be parsed without any problem (or regexp, or magic).
+Just `readline and JSON.parse`.
+
 And the merging. I know its one room one context, but different sensors.
 Different tools needs separate logs, and like that we can read them paralell.
 And the log format simplified again.
@@ -103,5 +104,11 @@ and we can label that sensor with `discard`. Otherwise run as long as we have re
 If we need aggregated value from the data, like the deviation one, sure we need to read them all.
 But have a chance to make some anomaly detection too, to exclude bad measures.
 
+#### Final thoughts
+That was fun to attend in this task. I hope you like my product even if my design mistakes was questionable.
+
+Not my proudest work, but I hope you will see my knowledge with the solution I gave and you will give me a good judgement about that :-)
+
+I added Mira as project collaborator, but please provide me more names if needed!
 
 [1]: ./blob/master/TECHNICAL-DOCUMENTATION.md
