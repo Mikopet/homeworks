@@ -40,7 +40,16 @@ class Traversal
   # Pre-order bejárás eredménye a példa adatokra:  [ 1, 2, 4, 3, 5, 6, 7 ]
   #
   def pre_order_traversal(tree)
-    # TODO
+    result = []
+
+    if tree.is_a? Hash
+      result << tree[:value]
+      tree = tree[:children]
+    end
+
+    tree.each { |t| result << pre_order_traversal(t) } if tree.is_a? Array
+
+    result.flatten
   end
 
   #
