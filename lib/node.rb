@@ -79,7 +79,11 @@ class Node
   attr_reader :id, :value, :parent_id
 
   def initialize attributes={}
-    # TODO Az inicializálásnak Symbol típusú kulcsokkal (is) kell működnie.
+    attributes = attributes.transform_keys(&:to_sym)
+
+    @id = attributes[:id]
+    @value = attributes[:value]
+    @parent_id = attributes[:parent_id]
   end
 
   class << self
