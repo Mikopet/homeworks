@@ -56,6 +56,15 @@ class Traversal
   # Post-order bejárás eredménye a példa adatokra: [ 4, 2, 5, 7, 6, 3, 1 ]
   #
   def post_order_traversal(tree)
-    # TODO
+    result = []
+
+    value = tree[:value]
+    tree = tree[:children] if tree.is_a?(Hash)
+
+    tree.each { |t| result << post_order_traversal(t) } if tree.is_a?(Array)
+
+    result << value
+
+    result.flatten
   end
 end

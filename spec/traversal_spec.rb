@@ -23,4 +23,13 @@ describe Traversal do
       expect(subject).to eq(result)
     end
   end
+
+  describe '#post_order_traversal' do
+    subject(:traversal) { described_class.new.post_order_traversal(tree) }
+    let(:result) { [ 4, 2, 5, 7, 6, 3, 1 ] }
+
+    it 'returns array with good order' do
+      expect(subject).to eq(result)
+    end
+  end
 end
