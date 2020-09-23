@@ -1,9 +1,10 @@
 require 'node'
 
 describe Node do
-  subject(:node) { Node.new(hash) }
+  let(:db) { DatabaseStub.new.nodes }
 
   describe '#new' do
+    subject(:node) { described_class.new(hash) }
     context 'can be instantiated' do
       let(:hash) { { id: 1, value: 1, parent_id: nil } }
       it 'with hash of symbols' do
@@ -28,14 +29,13 @@ describe Node do
 
   describe '.find_by_id' do
     subject(:find_by_id) { described_class.find_by_id(id) }
-    let(:db) { DatabaseStub.new.nodes }
 
     context 'search a valid id' do
       let(:id) { 1 }
       let(:hash) { db.first }
 
       it 'gives back the node' do
-        expect(subject).to eq(Node.new(hash))
+        expect(subject).to eq(described_class.new(hash))
       end
     end
 
@@ -50,11 +50,10 @@ describe Node do
 
   describe '.find_all_by_parent_id' do
     subject(:find_by_id) { described_class.find_all_by_parent_id(parent_id) }
-    let(:db) { DatabaseStub.new.nodes }
 
     context 'search a valid id' do
       let(:parent_id) { 1 }
-      let(:nodes) { [Node.new(db[1]), Node.new(db[2])] }
+      let(:nodes) { [described_class.new(db[1]), described_class.new(db[2])] }
 
       it 'gives back the node' do
         expect(subject).to eq(nodes)
@@ -65,6 +64,48 @@ describe Node do
       let(:parent_id) { -1 }
 
       it 'gives back empty array' do
+        expect(subject).to be_empty
+      end
+    end
+  end
+
+  describe '#parent' do
+    subject(:parent) { node.parent }
+
+    context 'have a parent' do
+      let(:node) { described_class.new(db.last)}
+
+      it 'gives back the right parent' do
+        expect(subject).to eq(described_class.new(db.last(2).first))
+      end
+    end
+
+    context 'have no parent' do
+      let(:node) { described_class.new(db.first)}
+
+      it 'gives back no parent' do
+        expect(subject).to be_nil
+      end
+    end
+  end
+
+  describe '#children' do
+    subject(:children) { node.children }
+
+    context 'have children' do
+      let(:node) { described_class.new(db.first)}
+
+      it 'gives back the right children' do
+        child_1 = described_class.new(db.first(3).last(2).first)
+        child_2 = described_class.new(db.first(3).last(2).last)
+        expect(subject).to eq([child_1, child_2])
+      end
+    end
+
+    context 'have no children' do
+      let(:node) { described_class.new(db.last)}
+
+      it 'gives back no children' do
         expect(subject).to be_empty
       end
     end

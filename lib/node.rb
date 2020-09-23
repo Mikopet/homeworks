@@ -101,11 +101,11 @@ class Node
   end
 
   def parent
-    # TODO
+    self.class.find_by_id(parent_id)
   end
 
   def children
-    # TODO
+    self.class.find_all_by_parent_id(id)
   end
 
   def descendants
