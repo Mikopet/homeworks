@@ -166,4 +166,28 @@ describe Node do
       end
     end
   end
+
+  describe '#siblings and #self_and_siblings' do
+    subject(:siblings) { node.siblings }
+
+    context 'have siblings' do
+      let(:node) { described_class.new(db[1]) }
+
+      it 'gives back the right siblings' do
+        expect(subject).to eq([described_class.new(db[2])])
+      end
+
+      it 'gives back with self too' do
+        expect(node.self_and_siblings).to include(node)
+      end
+    end
+
+    context 'have no siblings' do
+      let(:node) { described_class.new(db.first)}
+
+      it 'gives back no siblings' do
+        expect(subject).to be_empty
+      end
+    end
+  end
 end

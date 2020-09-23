@@ -125,11 +125,12 @@ class Node
   end
 
   def siblings
-    # TODO
+    myself = self
+    self_and_siblings.reject { |sibling| sibling == myself }
   end
 
   def self_and_siblings
-    # TODO
+    self.class.find_all_by_parent_id(parent_id)
   end
 
   def == other
