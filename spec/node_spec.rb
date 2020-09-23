@@ -76,7 +76,7 @@ describe Node do
       let(:node) { described_class.new(db.last)}
 
       it 'gives back the right parent' do
-        expect(subject).to eq(described_class.new(db.last(2).first))
+        expect(subject).to eq(described_class.new(db[5]))
       end
     end
 
@@ -96,8 +96,8 @@ describe Node do
       let(:node) { described_class.new(db.first)}
 
       it 'gives back the right children' do
-        child_1 = described_class.new(db.first(2).last)
-        child_2 = described_class.new(db.first(3).last)
+        child_1 = described_class.new(db[1])
+        child_2 = described_class.new(db[2])
 
         expect(subject).to eq([child_1, child_2])
       end
@@ -116,11 +116,11 @@ describe Node do
     subject(:descendants) { node.descendants }
 
     context 'have descendants' do
-      let(:node) { described_class.new(db.first(3).last)}
+      let(:node) { described_class.new(db[2])}
 
       it 'gives back the right descendants' do
-        descendant_1 = described_class.new(db.last(3).first)
-        descendant_2 = described_class.new(db.last(2).first)
+        descendant_1 = described_class.new(db[4])
+        descendant_2 = described_class.new(db[5])
         descendant_3 = described_class.new(db.last)
 
         expect(subject).to eq([descendant_1, descendant_2, descendant_3])
