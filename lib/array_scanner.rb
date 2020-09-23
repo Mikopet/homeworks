@@ -44,6 +44,7 @@ class ArrayScanner
   #
   def neighborhood_of_point center
     radius = 5
-    # TODO
+
+    ((center-radius..center+radius).to_a + array).tally
   end
 end
