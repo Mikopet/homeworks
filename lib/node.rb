@@ -109,11 +109,11 @@ class Node
   end
 
   def descendants
-    # TODO
+    (children + children.map(&:descendants)).flatten
   end
 
   def self_and_descendants
-    # TODO
+    [self] + descendants
   end
 
   def ancestors
