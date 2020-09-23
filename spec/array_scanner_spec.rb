@@ -25,4 +25,22 @@ describe ArrayScanner do
       end
     end
   end
+
+  describe '#maximal_odd_number' do
+    subject(:max_odd) { instantiated_array.maximal_odd_number }
+
+    context 'can get the maximum odd number' do
+      let(:array) { [1, 2, 3] }
+      it 'with valid array' do
+        expect(subject).to eq(3)
+      end
+    end
+
+    context 'can get 0' do
+      let(:array) { [2, 4] }
+      it ' without odd number' do
+        expect(subject).to eq(0)
+      end
+    end
+  end
 end

@@ -27,7 +27,7 @@ class ArrayScanner
   # Ha nincs a tömbben páratlan szám, akkor a visszatérési érték legyen 0.
   #
   def maximal_odd_number
-    # TODO
+    even_and_odd_numbers[:paratlan].max || 0
   end
 
   #
