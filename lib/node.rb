@@ -113,15 +113,15 @@ class Node
   end
 
   def self_and_descendants
-    [self] + descendants
+    descendants << self
   end
 
   def ancestors
-    # TODO
+    ((parent&.ancestors || []) << parent).compact
   end
 
   def self_and_ancestors
-    # TODO
+    ancestors << self
   end
 
   def siblings

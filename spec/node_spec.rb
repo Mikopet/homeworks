@@ -139,4 +139,31 @@ describe Node do
       end
     end
   end
+
+  describe '#ancestors and #self_and_ancestors' do
+    subject(:ancestors) { node.ancestors }
+
+    context 'have ancestors' do
+      let(:node) { described_class.new(db[4]) }
+
+      it 'gives back the right ancestors' do
+        ancestor_1 = described_class.new(db.first)
+        ancestor_2 = described_class.new(db[2])
+
+        expect(subject).to eq([ancestor_1, ancestor_2])
+      end
+
+      it 'gives back with self too' do
+        expect(node.self_and_ancestors).to include(node)
+      end
+    end
+
+    context 'have no ancestors' do
+      let(:node) { described_class.new(db.first)}
+
+      it 'gives back no ancestors' do
+        expect(subject).to be_empty
+      end
+    end
+  end
 end
