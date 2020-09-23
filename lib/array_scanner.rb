@@ -7,7 +7,7 @@ class ArrayScanner
   # Tedd lehetővé az osztály példányosítása során egy tömb (array) példány változóként történő beállítását.
   #
   def initialize array
-    # TODO
+    @array = array
   end
 
   #
