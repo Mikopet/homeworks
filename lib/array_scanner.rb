@@ -16,8 +16,9 @@ class ArrayScanner
   # A :paros kulcshoz kapcsolódó tömbbe a példányosítás során megadott tömbben (az objektum array változójában) szereplő páros számokat, a :paratlan kulcshoz kapcsolódó tömbbe a példányosítás során megadott tömbben (az objektum array változójában) szereplő páratlan számokat kellene összegyűjteni.
   #
   def even_and_odd_numbers
-    even = array.select(&:even?)
-    odd = array.select(&:odd?)
+    # even = array.select(&:even?)
+    # odd = array.select(&:odd?)
+    even, odd = array.partition { |v| v.even? }
 
     { paros: even, paratlan: odd }
   end
