@@ -43,4 +43,22 @@ describe ArrayScanner do
       end
     end
   end
+
+  describe '#all_numbers_are_dividable_by_3' do
+    subject(:dividable_by_3) { instantiated_array.all_numbers_are_dividable_by_3 }
+
+    context 'it is true' do
+      let(:array) { [3, 6] }
+      it 'gives true' do
+        expect(subject).to be(true)
+      end
+    end
+
+    context 'it is false' do
+      let(:array) { [3, 6, 10] }
+      it 'gives false' do
+        expect(subject).to be(false)
+      end
+    end
+  end
 end

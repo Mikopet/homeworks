@@ -34,7 +34,7 @@ class ArrayScanner
   # Igaz az az állítás, miszerint a példányosítás során megadott tömbnek (az objektum array változójának) minden eleme osztható 3-mal?
   #
   def all_numbers_are_dividable_by_3
-    # TODO
+    !array.detect { |n| n % 3 != 0 }
   end
 
   #
