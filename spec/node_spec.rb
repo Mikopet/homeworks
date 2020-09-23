@@ -38,5 +38,35 @@ describe Node do
         expect(subject).to eq(Node.new(hash))
       end
     end
+
+    context 'search an invalid id' do
+      let(:id) { -1 }
+
+      it 'gives back empty array' do
+        expect(subject).to be_nil
+      end
+    end
+  end
+
+  describe '.find_all_by_parent_id' do
+    subject(:find_by_id) { described_class.find_all_by_parent_id(parent_id) }
+    let(:db) { DatabaseStub.new.nodes }
+
+    context 'search a valid id' do
+      let(:parent_id) { 1 }
+      let(:nodes) { [Node.new(db[1]), Node.new(db[2])] }
+
+      it 'gives back the node' do
+        expect(subject).to eq(nodes)
+      end
+    end
+
+    context 'search an invalid id' do
+      let(:parent_id) { -1 }
+
+      it 'gives back empty array' do
+        expect(subject).to be_empty
+      end
+    end
   end
 end

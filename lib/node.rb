@@ -89,11 +89,14 @@ class Node
   class << self
     def find_by_id id
       node = DatabaseStub.new.nodes.detect { |node| node[:id] == id }
+      return nil if node.nil?
+
       Node.new(node)
     end
 
     def find_all_by_parent_id parent_id
-      # TODO
+      nodes = DatabaseStub.new.nodes.select { |node| node[:parent_id] == parent_id }
+      nodes.map { |n| Node.new(n) }
     end
   end
 
