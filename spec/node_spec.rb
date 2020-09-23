@@ -25,4 +25,18 @@ describe Node do
       end
     end
   end
+
+  describe '.find_by_id' do
+    subject(:find_by_id) { described_class.find_by_id(id) }
+    let(:db) { DatabaseStub.new.nodes }
+
+    context 'search a valid id' do
+      let(:id) { 1 }
+      let(:hash) { db.first }
+
+      it 'gives back the node' do
+        expect(subject).to eq(Node.new(hash))
+      end
+    end
+  end
 end
