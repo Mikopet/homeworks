@@ -1,0 +1,5 @@
+<%= pie_chart event_counts_path, @options.merge({title: 'Event counts'}) %>
+<%= area_chart event_counts_by_month_path, @options.merge({title: 'Event counts by month'}) %>
+
+<%= area_chart setup_start_counts_by_month_path, @options.merge({title: '"SETUP start" counts by month'}) %>
+<%= column_chart setup_counts_cumulated_by_month_path, @options.merge({title: 'Cumulated SETUP counts by month', stacked: true}) %>

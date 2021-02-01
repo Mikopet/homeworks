@@ -1,0 +1,79 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+setup_start:
+  timestamp: 2019-08-29 12:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 1
+
+step1_start:
+  timestamp: 2019-08-29 13:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 3
+
+step1_end:
+  timestamp: 2019-08-29 14:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 4
+
+step2_start:
+  timestamp: 2019-08-29 15:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 3
+
+step2_end:
+  timestamp: 2019-08-29 16:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 4
+
+step3_start:
+  timestamp: 2019-08-29 17:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 3
+
+step3_end:
+  timestamp: 2019-08-29 18:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 4
+
+step4_start:
+  timestamp: 2019-08-29 19:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 3
+
+step4_end:
+  timestamp: 2019-08-29 20:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 4
+
+step5_start:
+  timestamp: 2019-08-29 21:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 3
+
+step5_end:
+  timestamp: 2019-08-29 22:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 4
+
+setup_end:
+  timestamp: 2019-08-30 12:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 2
+
+pwd_gen:
+  timestamp: 2019-08-29 23:00:00
+  customer_id: 1
+  admin_id: 1
+  metric_type_id: 5
