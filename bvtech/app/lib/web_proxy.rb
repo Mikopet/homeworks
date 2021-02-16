@@ -1,12 +1,14 @@
 class WebProxy
   DEFAULT_WEB_PROXY = 'https://web-proxy.io/proxy/'
 
-  def initialize(proxy_url:)
+  def initialize(proxy_url: nil)
     @proxy_url = proxy_url
   end
 
-  def get_content(query)
-    connection.get(query).body
+  def get_content(query_url)
+    # sorry for this, Faraday combined with webmock is dumb :/
+    query_url = "https://#{query_url}" if @proxy_url.nil?
+    connection.get(query_url).body
   end
 
   private
