@@ -57,3 +57,11 @@ The plan is:
 
 I will use `bootstrap` and maybe a `toastr`. Keep it very simple.
 
+### 1) ProxyWrapper ~ 
+
+We need a HTTP client. We can use the built-in, or we can use a smarter one listed here:
+https://www.ruby-toolbox.com/categories/http_clients
+
+I do not decided yet, first create the test.
+
+( there is a `proxy_fetcher` gem too. It seems buggy... :/ )
