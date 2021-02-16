@@ -71,3 +71,9 @@ To be honest, this PoC took much more time what it deserves...
 
 Whatever, I will fix it later if I will have the mood. Now mocking this part...
 
+### 2) The Sync Task ~
+
+It seems very easy for first sight: new rake task, what initializes the proxy and call the BV url.
+Saves it somewhere in the `tmp/`, sync it to the database, cleaning up.
+Only the sync logic is a bit tricky because the mutability of data like this can cause bugs.
+
