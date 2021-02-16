@@ -21,17 +21,27 @@ RSpec.describe WebProxy do
     context 'given URL is invalid' do
       let(:url) { 'not so good URL, \'"+!%/=()Ö' }
 
-      xit 'raises error' do
-        expect { content }.to raise_error
+      it 'raises error' do
+        expect { content }.to raise_error(URI::InvalidURIError)
       end
     end
 
     context 'given URL is valid' do
-      let(:url) { 'https://api.ipify.org?format=json' }
+      let(:url) { 'api.ipify.org?format=json' }
 
-      xit 'returns the content of given URL through proxy' do
-        expect(content.keys).to include?(:ip)
-        expect { IPAddr.new(content[:ip]) }.to_not raise_error
+      before do
+        stub_request(:get, "https://web-proxy.io/proxy/api.ipify.org?format=json").
+          with(
+            headers: {
+              'Accept'=>'*/*',
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'User-Agent'=>'Faraday v1.3.0'
+            }).to_return(status: 200, body: {ip: '1.1.1.1'}.to_json, headers: {})
+      end
+
+      it 'returns the content of given URL through proxy' do
+        expect(content).to have_key('ip')
+        expect { IPAddr.new(content['ip']) }.to_not raise_error
       end
     end
   end

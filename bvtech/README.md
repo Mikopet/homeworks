@@ -13,7 +13,7 @@ The form for a single event is done in only one page where the customer can sele
 Requirements:
 - [ ] Full test coverage
 - [x] Commit as I go along
-- [ ] From some countries, the endpoint is not accessible. Implement a workaround.
+- [x] From some countries, the endpoint is not accessible. Implement a workaround.
 
 ###### TL;DR
 Quick run the app:
@@ -57,11 +57,17 @@ The plan is:
 
 I will use `bootstrap` and maybe a `toastr`. Keep it very simple.
 
-### 1) ProxyWrapper ~ 
+### 1) The Proxy Wrapper ~ 2-3 hours
 
-We need a HTTP client. We can use the built-in, or we can use a smarter one listed here:
+We need a HTTP client. We could have used the built-in solution, but for now a smarter one called `Faraday` will be used.
+
+More solutions are here, to extend the proxywrapper to use whatever we want:
 https://www.ruby-toolbox.com/categories/http_clients
 
-I do not decided yet, first create the test.
-
 ( there is a `proxy_fetcher` gem too. It seems buggy... :/ )
+
+To be honest, this PoC took much more time what it deserves...
+...and that only proxy service stopped working properly...
+
+Whatever, I will fix it later if I will have the mood. Now mocking this part...
+
