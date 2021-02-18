@@ -20,6 +20,8 @@ gem 'faraday_middleware'
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
 #  gem 'pry-nav'
   gem 'rspec-rails'
