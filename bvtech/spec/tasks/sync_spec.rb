@@ -41,3 +41,4 @@ describe 'rake sync:sports', type: :task do
     include_examples 'synchronizing to the DB'
   end
 end
+
