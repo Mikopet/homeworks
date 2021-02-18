@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Sport.create!(external_id: 100, name: 'Football', active: false)
+sport = Sport.create!(external_id: 240, name: 'Football', active: true)
+
