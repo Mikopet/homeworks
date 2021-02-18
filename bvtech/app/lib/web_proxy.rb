@@ -9,7 +9,7 @@ class WebProxy
     # sorry for this, Faraday combined with webmock is dumb :/
     # ... as I am. This hack made the software almost untestable ...
     # ... but have no time to fix that now
-    query_url = "https://#{query_url}" if @proxy_url.nil?
+    query_url = "http://#{query_url}" if @proxy_url.nil?
     connection.get(query_url).body
   end
 

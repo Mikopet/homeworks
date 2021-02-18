@@ -7,7 +7,7 @@ RSpec.shared_context 'using sports.json endpoint' do
   end
 
   before do
-    @endpoint = stub_request(:get, "#{proxy_url || 'https://'}#{query_url}").
+    @endpoint = stub_request(:get, "#{proxy_url || 'http://'}#{query_url}").
       with(
         headers: {
           'Accept'=>'*/*',

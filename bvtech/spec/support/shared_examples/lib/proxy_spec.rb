@@ -13,7 +13,7 @@ RSpec.shared_examples "a proxy call" do
     let(:query_url) { 'api.ipify.org?format=json' }
 
     before do
-      stub_request(:get, "#{proxy_url || 'https://'}#{query_url}").
+      stub_request(:get, "#{proxy_url || 'http://'}#{query_url}").
         with(
           headers: {
             'Accept'=>'*/*',

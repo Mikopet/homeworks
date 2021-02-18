@@ -71,9 +71,14 @@ To be honest, this PoC took much more time what it deserves...
 
 Whatever, I will fix it later if I will have the mood. Now mocking this part...
 
-### 2) The Sync Task ~
+### 2) The Sync Task ~ 5-8 hours
 
-It seems very easy for first sight: new rake task, what initializes the proxy and call the BV url.
+It seemed very easy for first sight: a rake task, what initializes the proxy and call the BV url.
 Saves it somewhere in the `tmp/`, sync it to the database, cleaning up.
 Only the sync logic is a bit tricky because the mutability of data like this can cause bugs.
+
+In reality we don't need the tmp, just do things on the fly. And yes, the task is easy... but the tests were heavy for them...
+It's not optimal, but works great.
+
+The proxy service is still dead, so I needed to mock it locally :/
 
