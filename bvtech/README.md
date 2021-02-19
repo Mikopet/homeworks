@@ -82,3 +82,8 @@ It's not optimal, but works great.
 
 The proxy service is still dead, so I needed to mock it locally :/
 
+### 3-4) Market & Events forms ~ 
+
+I decided to go with `thoughtbot/administrate`. There is no point to create a CRUD logic again from scratch.
+Instead of dealing with that I can focus to proper backend business logic.
+
