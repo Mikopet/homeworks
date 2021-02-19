@@ -11,7 +11,7 @@ The form for a single event is done in only one page where the customer can sele
 > Note: one sport can have multiple events and one event can have multiple markets.
 
 Requirements:
-- [ ] Full test coverage
+- [x] Full test coverage
 - [x] Commit as I go along
 - [x] From some countries, the endpoint is not accessible. Implement a workaround.
 
