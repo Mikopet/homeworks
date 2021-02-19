@@ -1,7 +1,7 @@
 RSpec.describe Sport, type: :model do
   context 'create invalid model' do
     subject { sport.save! }
-    let(:sport) { build :sport}
+    let(:sport) { build :sport }
 
     %i[name external_id].each do |attr|
       context "without presence of #{attr}" do

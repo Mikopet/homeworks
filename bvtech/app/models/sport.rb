@@ -5,6 +5,9 @@ class Sport < ApplicationRecord
   validates :name, uniqueness: { scope: :active, message: 'This name is already active in other record' }, if: :active
   validates :active, :inclusion => { :in => [true, false] }
 
+  has_many :events
+  has_many :markets
+
   scope :active, -> { where(active: true) }
 
   def activate
