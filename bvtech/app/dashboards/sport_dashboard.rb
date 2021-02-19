@@ -24,34 +24,35 @@ class SportDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
+  id
+  name
+  external_id
   events
   markets
-  id
-  external_id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  events
-  markets
   id
-  external_id
   name
+  external_id
   active
   created_at
   updated_at
+  events
+  markets
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+  name
+  external_id
+  active
   events
   markets
-  external_id
-  name
-  active
   ].freeze
 
   # COLLECTION_FILTERS
@@ -61,15 +62,15 @@ class SportDashboard < Administrate::BaseDashboard
   # For example to add an option to search for open resources by typing "open:"
   # in the search field:
   #
-  #   COLLECTION_FILTERS = {
-  #     open: ->(resources) { resources.where(open: true) }
-  #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+  COLLECTION_FILTERS = {
+    active: ->(resources) { resources.where(active: true) }
+  }.freeze
 
   # Overwrite this method to customize how sports are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(sport)
-  #   "Sport ##{sport.id}"
-  # end
+   def display_resource(sport)
+     "(##{sport.id}) #{sport.name}"
+   end
 end
+

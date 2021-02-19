@@ -21,28 +21,28 @@ class MarketDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  sport
   id
   name
   created_at
+  sport
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  sport
   id
   name
   created_at
   updated_at
+  sport
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  sport
   name
+  sport
   ].freeze
 
   # COLLECTION_FILTERS
@@ -60,7 +60,7 @@ class MarketDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how markets are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(market)
-  #   "Market ##{market.id}"
-  # end
+  def display_resource(market)
+    "(##{market.id}) #{market.name}"
+  end
 end
