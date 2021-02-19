@@ -25,6 +25,8 @@ Run the tests:
 $ docker-compose run web rspec
 ```
 
+Demo app can be found at: https://bvtech-demo.herokuapp.com/
+
 # Solution step-by-step
 
 ### -1) Accessing the API endpoint ~ 20 min
@@ -87,4 +89,8 @@ The proxy service is still dead, so I needed to mock it locally :/
 I decided to go with `thoughtbot/administrate`. There is no point in creating a CRUD logic again from scratch.
 Instead of dealing with that I can focus to proper backend business logic.
 Maybe some devops thingy.
+
+### *) CI/CD ~ 1-2 hours
+
+Just a bonus task. CI configuration for autotesting and CD for autodeploying the app to Heroku: https://bvtech-demo.herokuapp.com/
 
