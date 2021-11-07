@@ -7,7 +7,7 @@ In this case I do not have any linux computers at hand, so I need to solve this 
 So, there is a challenge though.
 
  - The first part, to dockerize the backend and frontend application is something like "finger-exercise".
- - The second part will be a bit more tricky, because I do not have a personal AWS account, and I was not prepared for paid for my own assessment, but leet it be. It should be fun.
+ - The second part will be a bit more tricky, because I do not have a personal AWS account, and I was not prepared for paid for my own assessment, but let it be. It should be fun.
  - The third part definitely will be tricky, because running k8s at a local windows machine... well, I dont know what to expect. Maybe I will deploy an EKS for it, dont know yet.
 
 To be honest, RedAcre made a mistake when sent me the task, because in the description on WeTransfer remained the name of the other applicant. (with today's deadline, omg)
@@ -29,4 +29,7 @@ Delete it completely, and rebuild from scratch. Starting with the newest `Flask`
 
 I had some problems with this WSL madness, but I managed to run the container properly.
 
+#### 1.2) Frontend container
+I'm not familiar with node ecosystem either, but the application started and terminated with an Error. I did't know, what to say.
+But it turned out, I was just too optimist, a downgrade on the node version helped.
 
