@@ -15,3 +15,18 @@ This was very easy to find that repository. Not to use as a guideline, but maybe
 
 But hell, that git history is a mess... as the solutions as well, but that is not my business to evaluate that. Move on!
 
+### 1) Containerizing the applications
+The task is, to use `Docker` and `docker-compose` to put the 2 application inside containers.
+The frontend needs to be exposed. I choose `nginx-unit` for that.
+Optional solution is to create a proxy container between them, and maybe for exposing the whole system, but I do not see the benefit yet. Decide later. :)
+
+The company needs some technical documentation for the solution.
+
+#### 1.1) Backend container
+I start with the backend, it seems easier.
+It had appeared before, that the `requirements.txt` is flawed. I dont know why, and is this the part of the challenge, but I corrected it in a very clear way.
+Delete it completely, and rebuild from scratch. Starting with the newest `Flask`, and scream-testing what it needs.
+
+I had some problems with this WSL madness, but I managed to run the container properly.
+
+
