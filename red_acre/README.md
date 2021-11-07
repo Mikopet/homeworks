@@ -33,3 +33,11 @@ I had some problems with this WSL madness, but I managed to run the container pr
 I'm not familiar with node ecosystem either, but the application started and terminated with an Error. I did't know, what to say.
 But it turned out, I was just too optimist, a downgrade on the node version helped.
 
+#### 1.3) Proxy container and some thoughts
+I owe an apology. I was too hard on Sujin, he seems a hardworking man, even if he lacks some orderliness.
+
+In this case a separate proxy container is completely unnecessary. For local developent this `docker-compose` solution is more than enough (okay, it could use volumes if needed, but now that's not very important), in production environment I would use `nginx-unit` for these little runtimes as a proxy.
+All other job should be done by the orchestration system.
+
+Because I don't have much time, instead of implementing the `nginx-unit` approach I will move on to the next task.
+
