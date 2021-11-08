@@ -23,3 +23,9 @@ variable "private_cidrs" {
     "10.0.4.0/24"
   ]
 }
+
+variable "app_port" {
+  description = "Port exposed by the Flask application"
+  default     = 5000
+}
+

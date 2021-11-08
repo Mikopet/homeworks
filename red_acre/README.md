@@ -60,3 +60,11 @@ So what I need?
  - `Security Groups`
 
 I will go with the most simple solution there.
+
+#### 2.2) Load Balancer for the backend
+It's practically very straightforward:
+ - `Security Group` to access `ECS`
+ - The `ALB` and it's `listener`
+ - `Target group`
+ - An `output` for the public dns
+
