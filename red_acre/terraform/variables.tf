@@ -40,3 +40,7 @@ variable "flask_env" {
   default     = "production"
 }
 
+variable "react_bucket_name" {
+  default = "react-bucket"
+}
+

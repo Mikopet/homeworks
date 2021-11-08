@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#############
+## BACKEND ##
+#############
+
+
 # Building with compose probably not very common (for a reason), but in this case it is better
 docker-compose build backend
 
@@ -18,4 +23,17 @@ docker push $IMAGE_URL
 # Well, this is not a best practice here. But we want to override the default nginx image
 # For this challenge it will do
 terraform apply --var="app_image=$IMAGE_URL" terraform/
+
+
+##############
+## FRONTEND ##
+##############
+
+
+docker-compose build frontend
+docker-compose run frontend npm run build
+
+aws s3 sync sys-stats/build/ s3://react-bucket
+
+rm -rf sys-stats/build/
 

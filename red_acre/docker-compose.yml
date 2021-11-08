@@ -9,3 +9,6 @@ services:
     build: ./sys-stats
     ports:
       - "3000:3000"
+    volumes:
+      - ./sys-stats/build/:/app/build/
+

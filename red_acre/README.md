@@ -81,3 +81,10 @@ Let's deal with the container registry
 Well, it is very obvious to use ECR here.
 After locally building the flask container, we just push to the AWS, and we can use that image!
 
+Sure, it needed a lot of adjustments, like IAM settings, and so on, but we have a deploy process now
+
+#### 2.5) S3 for the frontend
+I do not see any benefit of running a React app in container. It's fun for local development, but that makes no sense on the cloud.
+So `S3` and the static website hosting feature will do. And some `CloudFront`.
+
+
