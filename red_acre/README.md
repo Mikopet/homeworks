@@ -68,9 +68,12 @@ It's practically very straightforward:
  - `Target group`
  - An `output` for the public dns
 
-#### 2.3) ECS
+#### 2.3) ECS for the backennd
 Well, finally arrived here. There will be no magic:
  - A simple `ECS` cluster
  - With `task definition`
  - and a `container service`
+
+It's working flawlessly on `fargate` with the default nginx container.
+Let's deal with the container registry
 

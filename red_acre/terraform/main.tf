@@ -12,11 +12,11 @@ provider "aws" {
 }
 
 # create the ECS cluster
-resource "aws_ecs_cluster" "red_acre-ecs-cluster" {
+resource "aws_ecs_cluster" "red-acre-ecs-cluster" {
   name = "RedAcre-DevOps-Challenge"
 
   tags = {
-    Name = "red_acre-ecs-cluster"
+    Name = "red-acre-ecs-cluster"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "flask-task" {
   family                   = "flask-app"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 512
+  cpu                      = 256
   memory                   = 512
   container_definitions    = <<DEFINITION
 [
@@ -35,8 +35,8 @@ resource "aws_ecs_task_definition" "flask-task" {
       "essential":true,
       "portMappings":[
          {
-            "containerPort":5000,
-            "hostPort":8080,
+            "containerPort":${var.app_port},
+            "hostPort":${var.app_port},
             "protocol":"tcp"
          }
       ],
@@ -57,25 +57,25 @@ DEFINITION
 
 resource "aws_ecs_service" "flask-service" {
   name            = "flask-app-service"
-  cluster         = aws_ecs_cluster.red_acre-ecs-cluster.id
+  cluster         = aws_ecs_cluster.red-acre-ecs-cluster.id
   task_definition = aws_ecs_task_definition.flask-task.arn
   desired_count   = 1
   launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups  = [aws_security_group.red_acre-ecs-sg.id]
-    subnets          = aws_subnet.red_acre-public-subnets.*.id
+    security_groups  = [aws_security_group.red-acre-ecs-sg.id]
+    subnets          = aws_subnet.red-acre-public-subnets.*.id
     assign_public_ip = true
   }
 
   load_balancer {
     container_name   = "flask-app"
     container_port   = var.app_port
-    target_group_arn = aws_alb_target_group.red_acre-target-group.id
+    target_group_arn = aws_alb_target_group.red-acre-target-group.id
   }
 
   depends_on = [
-    aws_alb_listener.red_acre-alb-listener
+    aws_alb_listener.red-acre-alb-listener
   ]
 }
 

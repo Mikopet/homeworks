@@ -26,12 +26,13 @@ variable "private_cidrs" {
 
 variable "app_port" {
   description = "Port exposed by the Flask application"
-  default     = 5000
+  default     = 80
 }
 
 variable "app_image" {
   description = "Dockerhub image for flask-app"
   type        = string
+  default     = "nginx:latest"
 }
 
 variable "flask_env" {
