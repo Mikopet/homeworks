@@ -77,3 +77,7 @@ Well, finally arrived here. There will be no magic:
 It's working flawlessly on `fargate` with the default nginx container.
 Let's deal with the container registry
 
+#### 2.4) ECR for the backend
+Well, it is very obvious to use ECR here.
+After locally building the flask container, we just push to the AWS, and we can use that image!
+

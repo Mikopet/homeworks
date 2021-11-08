@@ -69,7 +69,7 @@ resource "aws_alb_listener" "red-acre-alb-listener" {
 }
 
 #################################
-output "alb-dns-name" {
-  value = aws_alb.red-acre-alb.dns_name
+output "backend_url" {
+  value = "http://${aws_alb.red-acre-alb.dns_name}/stats"
 }
 
