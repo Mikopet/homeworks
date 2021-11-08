@@ -41,3 +41,11 @@ All other job should be done by the orchestration system.
 
 Because I don't have much time, instead of implementing the `nginx-unit` approach I will move on to the next task.
 
+### 2) Terraforming
+
+It turned out, I had an AWS account just it was not activated. And the activtion process was stucked, so I needed to open a ticket to the Customer Support...
+
+However, the plan is to write a correct terraform solution, and provision the services properly.
+I want to run this workload in `ECS` with `ALB` configured. If I have time I will add `WAF`, maybe a Global Accelerator.
+The frontend should run on `S3`+`CloudFront` maybe.
+
