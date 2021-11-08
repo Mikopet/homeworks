@@ -68,3 +68,9 @@ It's practically very straightforward:
  - `Target group`
  - An `output` for the public dns
 
+#### 2.3) ECS
+Well, finally arrived here. There will be no magic:
+ - A simple `ECS` cluster
+ - With `task definition`
+ - and a `container service`
+

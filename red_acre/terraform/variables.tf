@@ -29,3 +29,13 @@ variable "app_port" {
   default     = 5000
 }
 
+variable "app_image" {
+  description = "Dockerhub image for flask-app"
+  type        = string
+}
+
+variable "flask_env" {
+  description = "FLASK_ENV variable"
+  default     = "production"
+}
+
