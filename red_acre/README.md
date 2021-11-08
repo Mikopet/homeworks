@@ -1,7 +1,6 @@
 # Red Acre DevOps Technical Challenge
 
 ### 0) Project basics, vision
-
 Although, the task seems straighforward, there is always a cling for thoroughness.
 In this case I do not have any linux computers at hand, so I need to solve this on my only weak windows machine.
 So, there is a challenge though.
@@ -42,10 +41,22 @@ All other job should be done by the orchestration system.
 Because I don't have much time, instead of implementing the `nginx-unit` approach I will move on to the next task.
 
 ### 2) Terraforming
-
 It turned out, I had an AWS account just it was not activated. And the activtion process was stucked, so I needed to open a ticket to the Customer Support...
 
 However, the plan is to write a correct terraform solution, and provision the services properly.
 I want to run this workload in `ECS` with `ALB` configured. If I have time I will add `WAF`, maybe a Global Accelerator.
 The frontend should run on `S3`+`CloudFront` maybe.
+I chose `eu-west-1` as region, because usually that's the cheapest.
 
+#### 2.1) Networking
+Finally AWS managed to activate my account. Hence, I can continue.
+I decided to go with the networking first, because that's the nest where the App-nestlings will grow up :-)
+
+So what I need?
+ - A `VPC`
+ - An `IGW`
+ - A `Route Table`
+ - A private and a public `subnet`
+ - `Security Groups`
+
+I will go with the most simple solution there.
