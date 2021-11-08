@@ -41,6 +41,6 @@ variable "flask_env" {
 }
 
 variable "react_bucket_name" {
-  default = "react-bucket"
+  default = "red-acre-react-bucket"
 }
 

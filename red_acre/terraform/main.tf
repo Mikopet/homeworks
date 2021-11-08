@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "flask-task" {
   memory                   = 512
   execution_role_arn       = aws_iam_role.red-acre-task-execution-role.arn
 
-  container_definitions    = <<DEFINITION
+  container_definitions = <<DEFINITION
 [
    {
       "name":"flask-app",

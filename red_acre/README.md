@@ -85,6 +85,19 @@ Sure, it needed a lot of adjustments, like IAM settings, and so on, but we have 
 
 #### 2.5) S3 for the frontend
 I do not see any benefit of running a React app in container. It's fun for local development, but that makes no sense on the cloud.
-So `S3` and the static website hosting feature will do. And some `CloudFront`.
+So `S3` and the static website hosting feature will do.
 
+I wanted to add some `CloudFront` too, beacuse that is the way, but this ephemeral site will not have traffic, so whatever.
+Trust me, I can do that too!
+
+#### 2.6) Extras
+Honestly, this solution has flaws. For example, during a new deploy both the old and the new container is serving until the old drains completely.
+And doing an `S3` backend to the `.tfstate` with some `DynamoDB` locking would be great, but at this point I have no time for that.
+Lets move on to the `k8s`...
+
+### 3) Kubernetes
+I thought a lot about how a good kubernetes solution looks like for this workload.
+Well, sure it looks unnecessary. I decided to go with `helm`, and write a simple Helm chart for this, but in the end I didn't have the time.
+
+However, the plan was very simple. Two separate pods. Yes, it would be easier to go within one pod, but thats not very good, isn't it? :-)
 

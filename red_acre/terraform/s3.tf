@@ -1,6 +1,7 @@
-resource "aws_s3_bucket" "react_bucket" {
-  bucket = "${var.react_bucket_name}"
-  acl    = "public-read"
+resource "aws_s3_bucket" "react-bucket" {
+  bucket        = var.react_bucket_name
+  force_destroy = true
+  acl           = "public-read"
 
   policy = <<EOF
 {
@@ -26,10 +27,7 @@ EOF
   }
 }
 
-output "website_domain" {
-  value = "${aws_s3_bucket.react_bucket.website_domain}"
+output "frontend_url" {
+  value = "http://${aws_s3_bucket.react-bucket.website_endpoint}"
 }
 
-output "website_endpoint" {
-  value = "${aws_s3_bucket.react_bucket.website_endpoint}"
-}
