@@ -101,3 +101,7 @@ Well, sure it looks unnecessary. I decided to go with `helm`, and write a simple
 
 However, the plan was very simple. Two separate pods. Yes, it would be easier to go within one pod, but thats not very good, isn't it? :-)
 
+I encountered a few problems with running k8s on this PC I have, because on windows thats a pain. After that I tried to make an EKS cluster...
+...but hell, AWS was not able to create the nodegroup or the fargate profile too, god knows why.
+
+So I ran out of time any way...
